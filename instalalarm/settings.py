@@ -120,3 +120,49 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email configuration
+# ============================================
+# KONFIGURACJA EMAILI
+# ============================================
+# EMAIL_HOST_USER - Email Przemysława Stolarza (nadawca wiadomości)
+#                   To jest email, z którego będą wysyłane wiadomości
+#                   Przykład: 'przemyslaw.stolarz@gmail.com' lub 'ps.instalalarm@gmail.com'
+#
+# EMAIL_HOST_PASSWORD - Hasło do konta email powyżej
+#                       Dla Gmail: użyj HASŁA APLIKACJI (nie zwykłego hasła!)
+#                       Jak utworzyć hasło aplikacji Gmail:
+#                       1. Wejdź na: https://myaccount.google.com/apppasswords
+#                       2. Wybierz "Aplikacja" i "Poczta"
+#                       3. Wybierz "Urządzenie" (np. Komputer)
+#                       4. Kliknij "Generuj" i skopiuj wygenerowane hasło (16 znaków)
+#
+# CONTACT_EMAIL - Email, na który będą przychodzić wiadomości z formularza
+#                 To też email Przemysława Stolarza (może być ten sam co EMAIL_HOST_USER)
+#                 Przykład: 'przemyslaw.stolarz@gmail.com' lub 'ps.instalalarm@gmail.com'
+#
+# Dla Gmaila:
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ps.instalalarm@gmail.com'  # Wpisz tutaj swój email Gmail (np. 'przemyslaw.stolarz@gmail.com')
+EMAIL_HOST_PASSWORD = ''  # Wpisz tutaj HASŁO APLIKACJI Gmail (16 znaków, nie zwykłe hasło!)
+DEFAULT_FROM_EMAIL = 'InstalAlarm <{}>'.format(EMAIL_HOST_USER) if EMAIL_HOST_USER else 'InstalAlarm'
+CONTACT_EMAIL = 'ps.instalalarm@gmail.com'  # Wpisz tutaj email, na który mają przychodzić wiadomości (może być ten sam co EMAIL_HOST_USER)
+
+# Dla innych serwerów email (np. własna domena):
+# EMAIL_HOST = 'smtp.twoja-domena.pl'  # Zmień na swój serwer SMTP
+# EMAIL_PORT = 587  # lub 465 dla SSL
+# EMAIL_USE_TLS = True  # lub EMAIL_USE_SSL = True dla portu 465
+# EMAIL_HOST_USER = 'ps.instalalarm@gmail.com'
+# EMAIL_HOST_PASSWORD = 'twoje-haslo'
+# DEFAULT_FROM_EMAIL = 'InstalAlarm <ps.instalalarm@gmail.com>'
+# CONTACT_EMAIL = 'ps.instalalarm@gmail.com'
+
+# Cache configuration (dla rate limiting)
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}

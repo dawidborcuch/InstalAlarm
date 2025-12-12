@@ -5,6 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InstalAlarm - Systemy alarmowe, monitoring i automatyka</title>
+    <meta name="description" content="InstalAlarm - profesjonalne systemy alarmowe, monitoring CCTV i automatyka budynkowa. Autoryzowany partner Eltrox. Jasiorówka, okolice Warszawy.">
+    <meta name="keywords" content="alarmy, monitoring, CCTV, automatyka budynkowa, systemy alarmowe, InstalAlarm, Eltrox">
+    <meta name="author" content="InstalAlarm Przemysław Stolarz">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://instalalarm.pl/">
+    <meta property="og:title" content="InstalAlarm - Systemy alarmowe, monitoring i automatyka">
+    <meta property="og:description" content="Profesjonalne systemy alarmowe, monitoring CCTV i automatyka budynkowa. Autoryzowany partner Eltrox.">
+    <meta property="og:image" content="{% static 'website/images/logo.png' %}">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://instalalarm.pl/">
+    <meta property="twitter:title" content="InstalAlarm - Systemy alarmowe, monitoring i automatyka">
+    <meta property="twitter:description" content="Profesjonalne systemy alarmowe, monitoring CCTV i automatyka budynkowa.">
+    <meta property="twitter:image" content="{% static 'website/images/logo.png' %}">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "InstalAlarm Przemysław Stolarz",
+        "image": "{% static 'website/images/logo.png' %}",
+        "description": "Profesjonalne systemy alarmowe, monitoring CCTV i automatyka budynkowa",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jasiorówka 249",
+            "addressLocality": "Jasiorówka",
+            "postalCode": "07-130",
+            "addressCountry": "PL"
+        },
+        "telephone": "+48516586323",
+        "email": "ps.instalalarm@gmail.com",
+        "url": "https://instalalarm.pl",
+        "priceRange": "$$",
+        "areaServed": {
+            "@type": "Country",
+            "name": "Poland"
+        }
+    }
+    </script>
     <link rel="icon" type="image/png" href="{% static 'website/images/tarcza.png' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'website/images/tarcza.png' %}">
     <link rel="apple-touch-icon" href="{% static 'website/images/tarcza.png' %}">
@@ -179,6 +222,24 @@
             box-shadow: 0 0 0 3px rgba(196, 0, 0, 0.1);
         }
         
+        .contact-form-modal input.error,
+        .contact-form-modal textarea.error {
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 3px rgba(196, 0, 0, 0.2);
+        }
+        
+        .error-message {
+            color: var(--accent-red);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+        
+        .contact-form-modal button[type="submit"]:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
         .contact-form-modal textarea {
             resize: vertical;
             min-height: 120px;
@@ -346,7 +407,7 @@
 
     <!-- Sekcja Hero -->
     <section class="hero" id="hero">
-        <div class="hero-background" style="background-image: url('{% static 'website/images/tarcza.png' %}');">
+        <div class="hero-background">
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
@@ -422,7 +483,7 @@
                         <div class="carousel-slide">
                             <div class="realization-card-preview">
                                 <div class="realization-image-preview">
-                                    <img src="{{ zdjecie.zdjecie.url }}" alt="{{ zdjecie.tytul }}" class="gallery-image" data-full-image="{{ zdjecie.zdjecie.url }}" style="cursor: pointer;">
+                                    <img src="{{ zdjecie.zdjecie.url }}" alt="{{ zdjecie.tytul }}" class="gallery-image" data-full-image="{{ zdjecie.zdjecie.url }}" style="cursor: pointer;" loading="lazy">
                                 </div>
                                 <div class="realization-content-preview">
                                     <h3>{{ zdjecie.tytul }}</h3>
@@ -497,11 +558,14 @@
                     </div>
                     <div class="contact-item">
                         <strong>E-mail:</strong>
-                        <a href="mailto:kontakt@instalalarm.pl">kontakt@instalalarm.pl</a>
+                        <a href="mailto:ps.instalalarm@gmail.com">ps.instalalarm@gmail.com</a>
                     </div>
                     <div class="contact-item">
                         <strong>Adres:</strong>
                         <span>Jasiorówka 249, 07-130 Jasiorówka</span>
+                    </div>
+                    <div class="contact-item" style="margin-top: 1rem;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d180.33164734245722!2d21.68184374256056!3d52.547115275575756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spl!2spl!4v1765554014622!5m2!1spl!2spl" width="100%" height="200" style="border:0; border-radius: 5px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -567,6 +631,14 @@
 
     <script src="{% static 'website/js/main.js' %}"></script>
     <script>
+        // Ustaw background-image dla hero-background (aby uniknąć błędu lintera CSS)
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroBackground = document.querySelector('.hero-background');
+            if (heroBackground) {
+                heroBackground.style.backgroundImage = "url('{% static 'website/images/tarcza.png' %}')";
+            }
+        });
+        
         // Lightbox dla zdjęć
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('lightboxModal');
@@ -675,15 +747,97 @@
             });
             
             if (contactForm) {
+                // Walidacja w czasie rzeczywistym
+                const inputs = contactForm.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    input.addEventListener('blur', function() {
+                        validateField(this);
+                    });
+                    input.addEventListener('input', function() {
+                        if (this.classList.contains('error')) {
+                            validateField(this);
+                        }
+                    });
+                });
+                
+                function validateField(field) {
+                    const value = field.value.trim();
+                    const fieldName = field.name;
+                    let isValid = true;
+                    let errorMessage = '';
+                    
+                    // Usuń poprzednie błędy
+                    const existingError = field.parentElement.querySelector('.error-message');
+                    if (existingError) {
+                        existingError.remove();
+                    }
+                    field.classList.remove('error');
+                    
+                    // Walidacja
+                    if (field.required && !value) {
+                        isValid = false;
+                        errorMessage = 'To pole jest wymagane.';
+                    } else if (fieldName === 'email' && value) {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(value)) {
+                            isValid = false;
+                            errorMessage = 'Podaj prawidłowy adres email.';
+                        }
+                    } else if (fieldName === 'phone' && value) {
+                        const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+                        if (!phoneRegex.test(value) || value.length < 9) {
+                            isValid = false;
+                            errorMessage = 'Podaj prawidłowy numer telefonu.';
+                        }
+                    }
+                    
+                    if (!isValid) {
+                        field.classList.add('error');
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'error-message';
+                        errorDiv.textContent = errorMessage;
+                        field.parentElement.appendChild(errorDiv);
+                    }
+                    
+                    return isValid;
+                }
+                
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
+                    
+                    // Waliduj wszystkie pola
+                    let isFormValid = true;
+                    inputs.forEach(input => {
+                        if (!validateField(input)) {
+                            isFormValid = false;
+                        }
+                    });
                     
                     // Sprawdź czy checkbox jest zaznaczony
                     const privacyCheckbox = document.getElementById('contact_privacy');
                     if (!privacyCheckbox.checked) {
-                        alert('Musisz zaakceptować politykę prywatności.');
+                        isFormValid = false;
+                        const checkboxLabel = privacyCheckbox.closest('.checkbox-label');
+                        if (!checkboxLabel.querySelector('.error-message')) {
+                            const errorDiv = document.createElement('div');
+                            errorDiv.className = 'error-message';
+                            errorDiv.textContent = 'Musisz zaakceptować politykę prywatności.';
+                            checkboxLabel.appendChild(errorDiv);
+                        }
+                    } else {
+                        const errorMsg = privacyCheckbox.closest('.checkbox-label').querySelector('.error-message');
+                        if (errorMsg) errorMsg.remove();
+                    }
+                    
+                    if (!isFormValid) {
                         return;
                     }
+                    
+                    // Pokaż loading state
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Wysyłanie...';
                     
                     // Wyślij formularz przez AJAX
                     const formData = new FormData(contactForm);
@@ -878,6 +1032,37 @@
                         stopAutoPlay();
                         setTimeout(startAutoPlay, 5000); // Wznów po 5 sekundach
                     }
+                });
+            }
+            
+            // Touch gestures dla mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const minSwipeDistance = 50;
+            
+            if (track) {
+                track.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                    stopAutoPlay();
+                });
+                
+                track.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    const swipeDistance = touchStartX - touchEndX;
+                    
+                    if (Math.abs(swipeDistance) > minSwipeDistance) {
+                        if (swipeDistance > 0) {
+                            // Swipe left - next
+                            const maxIndex = Math.max(0, totalSlides - visibleSlides);
+                            currentIndex = Math.min(maxIndex, currentIndex + visibleSlides);
+                        } else {
+                            // Swipe right - prev
+                            currentIndex = Math.max(0, currentIndex - visibleSlides);
+                        }
+                        updateCarousel();
+                    }
+                    
+                    startAutoPlay();
                 });
             }
             

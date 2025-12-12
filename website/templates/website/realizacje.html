@@ -5,6 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realizacje - InstalAlarm</title>
+    <meta name="description" content="Zobacz nasze realizacje - profesjonalne instalacje systemów alarmowych, monitoringu CCTV i automatyki budynkowej.">
+    
+    <!-- Breadcrumbs Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Strona główna",
+            "item": "{% url 'index' %}"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Realizacje",
+            "item": "{% url 'realizacje' %}"
+        }]
+    }
+    </script>
     <link rel="icon" type="image/png" href="{% static 'website/images/tarcza.png' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'website/images/tarcza.png' %}">
     <link rel="apple-touch-icon" href="{% static 'website/images/tarcza.png' %}">
@@ -501,7 +521,7 @@
                 {% for zdjecie in zdjecia %}
                 <div class="realization-card">
                     <div class="realization-image">
-                        <img src="{{ zdjecie.zdjecie.url }}" alt="{{ zdjecie.tytul }}" class="gallery-image" data-full-image="{{ zdjecie.zdjecie.url }}" style="cursor: pointer;">
+                        <img src="{{ zdjecie.zdjecie.url }}" alt="{{ zdjecie.tytul }}" class="gallery-image" data-full-image="{{ zdjecie.zdjecie.url }}" style="cursor: pointer;" loading="lazy">
                     </div>
                     <div class="realization-content">
                         <h3>{{ zdjecie.tytul }}</h3>
@@ -543,7 +563,7 @@
                     </div>
                     <div class="contact-item">
                         <strong>E-mail:</strong>
-                        <a href="mailto:kontakt@instalalarm.pl">kontakt@instalalarm.pl</a>
+                        <a href="mailto:ps.instalalarm@gmail.com">ps.instalalarm@gmail.com</a>
                     </div>
                     <div class="contact-item">
                         <strong>Adres:</strong>

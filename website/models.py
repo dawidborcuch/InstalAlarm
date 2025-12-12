@@ -17,3 +17,22 @@ class ZdjecieRealizacji(models.Model):
     
     def __str__(self):
         return self.tytul
+
+
+class ContactMessage(models.Model):
+    """Model reprezentujący wiadomość z formularza kontaktowego."""
+    imie = models.CharField(max_length=100, verbose_name="Imię")
+    telefon = models.CharField(max_length=20, verbose_name="Telefon")
+    email = models.EmailField(verbose_name="Email")
+    tresc = models.TextField(verbose_name="Treść wiadomości")
+    data_wyslania = models.DateTimeField(default=timezone.now, verbose_name="Data wysłania")
+    przeczytane = models.BooleanField(default=False, verbose_name="Przeczytane")
+    ip_address = models.GenericIPAddressField(null=True, blank=True, verbose_name="Adres IP")
+    
+    class Meta:
+        verbose_name = "Wiadomość kontaktowa"
+        verbose_name_plural = "Wiadomości kontaktowe"
+        ordering = ['-data_wyslania']
+    
+    def __str__(self):
+        return f"{self.imie} - {self.email} ({self.data_wyslania.strftime('%Y-%m-%d %H:%M')})"

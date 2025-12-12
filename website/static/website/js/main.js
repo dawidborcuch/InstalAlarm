@@ -99,18 +99,38 @@ const observerOptions = {
 const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
         }
     });
 }, observerOptions);
 
-// Observe service cards
-document.querySelectorAll('.service-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-    observer.observe(card);
+// Observe elements for animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Service cards
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(card);
+    });
+    
+    // Realization cards
+    document.querySelectorAll('.realization-card, .realization-card-preview').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(card);
+    });
+    
+    // Section titles
+    document.querySelectorAll('.section-title').forEach(title => {
+        title.style.opacity = '0';
+        title.style.transform = 'translateY(20px)';
+        title.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(title);
+    });
 });
 
 // ============================================

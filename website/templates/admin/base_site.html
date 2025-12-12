@@ -1,0 +1,29 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    .dashboard-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+    .stat-card {
+        background: #417690;
+        color: white;
+        padding: 1rem;
+        border-radius: 5px;
+    }
+    .stat-card h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 0.9rem;
+    }
+    .stat-card .number {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
