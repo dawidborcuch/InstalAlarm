@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstalAlarm - Systemy alarmowe, monitoring i automatyka</title>
+    <link rel="icon" type="image/png" href="{% static 'website/images/tarcza.png' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'website/images/tarcza.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'website/images/tarcza.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+</head>
+<body>
+    <!-- Header i Nawigacja -->
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="{% url 'index' %}" class="logo">
+                        <div class="logo-icon">
+                            <img src="{% static 'website/images/logo.png' %}" alt="InstalAlarm Logo" class="logo-img">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-name">InstalAlarm</span>
+                            <span class="logo-subtitle">Przemysław Stolarz</span>
+                        </div>
+                    </a>
+                    
+                    <button class="mobile-menu-toggle" aria-label="Menu" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="{% url 'index' %}#oferta">Oferta</a></li>
+                        <li><a href="{% url 'realizacje' %}">Realizacje</a></li>
+                        <li><a href="{% url 'index' %}#o-nas">O nas</a></li>
+                        <li><a href="{% url 'index' %}#kontakt">Kontakt</a></li>
+                    </ul>
+                    
+                    <a href="{% url 'index' %}#kontakt" class="btn-cta-header">Zapytaj o wycenę</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sekcja Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-background" style="background-image: url('{% static 'website/images/tarcza.png' %}');">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="hero-title">InstalAlarm. Twój spokój, nasz system.</h1>
+                <p class="hero-subtitle">Kompleksowe systemy alarmowe, monitoring wizyjny i automatyka domowa.</p>
+                <a href="{% url 'index' %}#kontakt" class="btn-hero">Zabezpiecz swój majątek</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja Partnerstwa Eltrox -->
+    <section class="partnership" id="partnership">
+        <div class="container">
+            <div class="partnership-grid">
+                <div class="partnership-content">
+                    <h2 class="partnership-title">Autoryzowany Partner <span class="highlight-orange">ELTROX</span></h2>
+                    <p class="partnership-text">
+                        Dzięki strategicznemu partnerstwu z liderem branży, firmą Eltrox, oferujemy dostęp do najnowszych technologii i certyfikowanych urządzeń.
+                    </p>
+                </div>
+                <div class="partnership-logo">
+                    <div class="eltrox-logo">
+                        <img src="{% static 'website/images/eltrox.png' %}" alt="Eltrox Logo" class="eltrox-logo-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja Usługi -->
+    <section class="services" id="oferta">
+        <div class="container">
+            <h2 class="section-title">Nasze Usługi</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📹</div>
+                    <h3 class="service-title">Monitoring CCTV</h3>
+                    <p class="service-description">
+                        Profesjonalne systemy monitoringu wizyjnego z dostępem zdalnym. Kamery IP, analogowe oraz systemy rejestracji wideo.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚨</div>
+                    <h3 class="service-title">Systemy Alarmowe SSWiN</h3>
+                    <p class="service-description">
+                        Zaawansowane systemy sygnalizacji włamania i napadu. Certyfikowane rozwiązania dla domów i firm.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3 class="service-title">Automatyka Budynkowa</h3>
+                    <p class="service-description">
+                        Inteligentne systemy zarządzania budynkiem. Sterowanie oświetleniem, ogrzewaniem i bezpieczeństwem.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja Realizacje (Podgląd) -->
+    <section class="realizations-preview" id="realizacje">
+        <div class="container">
+            <h2 class="section-title">Nasze Realizacje</h2>
+            {% if realizacje %}
+            <div class="realizations-grid-preview">
+                {% for realizacja in realizacje|slice:":3" %}
+                <div class="realization-card-preview">
+                    {% if realizacja.zdjecia.first %}
+                    <div class="realization-image-preview">
+                        <img src="{{ realizacja.zdjecia.first.zdjecie.url }}" alt="{{ realizacja.tytul }}">
+                    </div>
+                    {% endif %}
+                    <div class="realization-content-preview">
+                        <h3>{{ realizacja.tytul }}</h3>
+                        {% if realizacja.opis %}
+                        <p>{{ realizacja.opis|truncatewords:20 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="{% url 'realizacje' %}" class="btn-hero">Zobacz wszystkie realizacje</a>
+            </div>
+            {% else %}
+            <p style="text-align: center; color: var(--text-secondary); padding: 2rem 0;">
+                Wkrótce dodamy nasze realizacje!
+            </p>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="kontakt">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <img src="{% static 'website/images/logo.png' %}" alt="InstalAlarm Logo" class="logo-img">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-name">InstalAlarm</span>
+                            <span class="logo-subtitle">Przemysław Stolarz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h3>Kontakt</h3>
+                    <div class="contact-item">
+                        <strong>Telefon:</strong>
+                        <a href="tel:+48XXXXXXXXX">+48 516 586 323</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>E-mail:</strong>
+                        <a href="mailto:kontakt@instalalarm.pl">kontakt@instalalarm.pl</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Adres:</strong>
+                        <span>Jasiorówka 249, 07-130 Jasiorówka</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {% now "Y" %} InstalAlarm Przemysław Stolarz. Wszelkie prawa zastrzeżone.</p>
+                <div class="footer-links">
+                    <a href="#polityka">Polityka prywatności</a>
+                    <span>|</span>
+                    <a href="#regulamin">Regulamin</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'website/js/main.js' %}"></script>
+</body>
+</html>
