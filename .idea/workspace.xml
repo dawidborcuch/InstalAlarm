@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efab8e43-3ebf-4a4c-8054-0311faedd2cd" name="Changes" comment="init">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/realizacje/IMG_20230823_140605__kopia.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/templates/website/polityka_prywatnosci.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/static/website/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/website/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/website/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/website/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/templates/website/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/website/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/templates/website/realizacje.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/website/realizacje.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +65,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765529601965</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="init">
+      <option name="closed" value="true" />
+      <created>1765537496925</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1765537496925</updated>
+    </task>
+    <task id="LOCAL-00003" summary="init">
+      <option name="closed" value="true" />
+      <created>1765538542708</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1765538542708</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
