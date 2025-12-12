@@ -758,3 +758,30 @@ body {
     line-height: 1.6;
 }
 
+/* ============================================
+   SEKCJA O NAS
+   ============================================ */
+.about-section {
+    padding: 6rem 0;
+    background-color: var(--bg-dark);
+}
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-text {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 1.125rem;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+

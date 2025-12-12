@@ -227,6 +227,32 @@
         </div>
     </section>
 
+    <!-- Sekcja O nas -->
+    <section class="about-section" id="o-nas">
+        <div class="container">
+            <h2 class="section-title">O nas</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        InstalAlarm to firma z wieloletnim doświadczeniem w branży instalacji niskoprądowych. 
+                        Specjalizujemy się w profesjonalnych systemach alarmowych, monitoringu wizyjnym oraz 
+                        automatyce budynkowej.
+                    </p>
+                    <p>
+                        Nasza firma, prowadzona przez Przemysława Stolarza, oferuje kompleksowe rozwiązania 
+                        zapewniające bezpieczeństwo i komfort. Jako autoryzowany partner Eltrox, mamy dostęp 
+                        do najnowszych technologii i certyfikowanych urządzeń.
+                    </p>
+                    <p>
+                        Do każdego projektu podchodzimy indywidualnie, zapewniając najwyższą jakość wykonania 
+                        i profesjonalną obsługę. Naszym priorytetem jest satysfakcja klienta i zapewnienie 
+                        kompleksowej ochrony ich mienia.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer" id="kontakt">
         <div class="container">
@@ -261,9 +287,7 @@
             <div class="footer-bottom">
                 <p>&copy; {% now "Y" %} InstalAlarm Przemysław Stolarz. Wszelkie prawa zastrzeżone.</p>
                 <div class="footer-links">
-                    <a href="#polityka">Polityka prywatności</a>
-                    <span>|</span>
-                    <a href="#regulamin">Regulamin</a>
+                    <a href="{% url 'polityka_prywatnosci' %}">Polityka prywatności</a>
                 </div>
             </div>
         </div>

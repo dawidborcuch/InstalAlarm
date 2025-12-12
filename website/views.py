@@ -12,3 +12,8 @@ def realizacje(request):
     """Strona z realizacjami."""
     zdjecia_list = ZdjecieRealizacji.objects.filter(aktywna=True)
     return render(request, 'website/realizacje.html', {'zdjecia': zdjecia_list})
+
+
+def polityka_prywatnosci(request):
+    """Strona z polityką prywatności."""
+    return render(request, 'website/polityka_prywatnosci.html')

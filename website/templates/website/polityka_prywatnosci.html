@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polityka Prywatności - InstalAlarm</title>
+    <link rel="icon" type="image/png" href="{% static 'website/images/tarcza.png' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'website/images/tarcza.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'website/images/tarcza.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+    <style>
+        .privacy-section {
+            padding: 8rem 0 4rem;
+            background-color: var(--bg-dark);
+            min-height: 80vh;
+        }
+        
+        .privacy-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--bg-light);
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .privacy-content h1 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .privacy-content h2 {
+            font-size: 1.75rem;
+            color: var(--accent-red);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-content h3 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .privacy-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-content ul {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .privacy-contact {
+            background-color: var(--bg-darker);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--accent-red);
+        }
+        
+        .privacy-contact strong {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .privacy-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .privacy-content h1 {
+                font-size: 2rem;
+            }
+            
+            .privacy-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header i Nawigacja -->
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="{% url 'index' %}" class="logo">
+                        <div class="logo-icon">
+                            <img src="{% static 'website/images/logo.png' %}" alt="InstalAlarm Logo" class="logo-img">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-name">InstalAlarm</span>
+                            <span class="logo-subtitle">Przemysław Stolarz</span>
+                        </div>
+                    </a>
+                    
+                    <button class="mobile-menu-toggle" aria-label="Menu" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="{% url 'index' %}#oferta">Oferta</a></li>
+                        <li><a href="{% url 'realizacje' %}">Realizacje</a></li>
+                        <li><a href="{% url 'index' %}#o-nas">O nas</a></li>
+                        <li><a href="{% url 'index' %}#kontakt">Kontakt</a></li>
+                    </ul>
+                    
+                    <a href="{% url 'index' %}#kontakt" class="btn-cta-header">Zapytaj o wycenę</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sekcja Polityka Prywatności -->
+    <section class="privacy-section">
+        <div class="container">
+            <div class="privacy-content">
+                <h1>Polityka Prywatności</h1>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
+                    PS. INSTALALARM STOLARZ PRZEMYSŁAW
+                </p>
+
+                <h2>1. Informacje ogólne</h2>
+                <p>
+                    Niniejsza Polityka Prywatności opisuje zasady przetwarzania danych osobowych zbieranych za pośrednictwem formularza kontaktowego dostępnego na stronie internetowej firmy PS. INSTALALARM STOLARZ PRZEMYSŁAW (dalej: „InstalAlarm”).
+                </p>
+                <div class="privacy-contact">
+                    <p><strong>Administratorem danych osobowych jest:</strong></p>
+                    <p>PS. INSTALALARM STOLARZ PRZEMYSŁAW</p>
+                    <p>NIP: 8241808328</p>
+                    <p>Adres: Jasiorówka 249, 07-130 Jasiorówka</p>
+                    <p>Kontakt: <a href="mailto:kontakt@instalalarm.pl" style="color: var(--accent-red);">kontakt@instalalarm.pl</a></p>
+                </div>
+
+                <h2>2. Jakie dane zbieramy</h2>
+                <p>W formularzu kontaktowym zbieramy następujące dane osobowe:</p>
+                <ul>
+                    <li>Imię</li>
+                    <li>Numer telefonu</li>
+                    <li>Adres e-mail</li>
+                </ul>
+                <p>
+                    Podanie danych jest dobrowolne, ale niezbędne w celu skontaktowania się z Tobą w sprawie wyceny usług.
+                </p>
+
+                <h2>3. Cel i podstawa przetwarzania danych</h2>
+                <p>Twoje dane przetwarzamy w celu:</p>
+                <ul>
+                    <li>
+                        <strong>Kontaktowania się w sprawie wyceny usług</strong> – art. 6 ust. 1 lit. b RODO (działania zmierzające do zawarcia umowy).
+                    </li>
+                    <li>
+                        <strong>Udzielenia odpowiedzi na pytanie wysłane w formularzu</strong> – art. 6 ust. 1 lit. f RODO (prawnie uzasadniony interes administratora polegający na obsłudze zapytań klientów).
+                    </li>
+                </ul>
+                <p>Dane nie są wykorzystywane do profilowania.</p>
+
+                <h2>4. Udostępnianie danych</h2>
+                <p>
+                    Twoje dane nie są udostępniane żadnym firmom, instytucjom ani innym podmiotom zewnętrznym. Pozostają wyłącznie w obrębie InstalAlarm Przemysław Stolarz i są wykorzystywane tylko do kontaktu z Tobą oraz przygotowania wyceny.
+                </p>
+                <p>Nie przekazujemy danych poza Europejski Obszar Gospodarczy.</p>
+
+                <h2>5. Okres przechowywania danych</h2>
+                <p>Dane przechowujemy:</p>
+                <ul>
+                    <li>przez okres niezbędny do skontaktowania się i przedstawienia wyceny,</li>
+                    <li>następnie maksymalnie 12 miesięcy w celach dowodowych i obsługi zgłoszenia,</li>
+                    <li>lub do czasu zgłoszenia żądania usunięcia danych.</li>
+                </ul>
+
+                <h2>6. Twoje prawa</h2>
+                <p>Zgodnie z RODO masz prawo do:</p>
+                <ul>
+                    <li>dostępu do swoich danych,</li>
+                    <li>ich sprostowania,</li>
+                    <li>usunięcia,</li>
+                    <li>ograniczenia przetwarzania,</li>
+                    <li>wniesienia sprzeciwu,</li>
+                    <li>przenoszenia danych,</li>
+                    <li>wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
+                </ul>
+                <p>
+                    Aby skorzystać z praw, skontaktuj się: <a href="mailto:kontakt@instalalarm.pl" style="color: var(--accent-red);">kontakt@instalalarm.pl</a>
+                </p>
+
+                <h2>7. Bezpieczeństwo danych</h2>
+                <p>
+                    Chronimy Twoje dane, stosując odpowiednie środki techniczne i organizacyjne, które zapobiegają ich utracie, zmianie, ujawnieniu lub dostępowi przez osoby nieuprawnione.
+                </p>
+
+                <h2>8. Kontakt w sprawach dotyczących danych osobowych</h2>
+                <p>Jeśli masz pytania dotyczące przetwarzania danych lub tej Polityki Prywatności, skontaktuj się z nami:</p>
+                <div class="privacy-contact">
+                    <p><strong>E-mail:</strong> <a href="mailto:kontakt@instalalarm.pl" style="color: var(--accent-red);">kontakt@instalalarm.pl</a></p>
+                    <p><strong>InstalAlarm Przemysław Stolarz</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="kontakt">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <img src="{% static 'website/images/logo.png' %}" alt="InstalAlarm Logo" class="logo-img">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-name">InstalAlarm</span>
+                            <span class="logo-subtitle">Przemysław Stolarz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h3>Kontakt</h3>
+                    <div class="contact-item">
+                        <strong>Telefon:</strong>
+                        <a href="tel:+48516586323">+48 516 586 323</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>E-mail:</strong>
+                        <a href="mailto:kontakt@instalalarm.pl">kontakt@instalalarm.pl</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Adres:</strong>
+                        <span>Jasiorówka 249, 07-130 Jasiorówka</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {% now "Y" %} InstalAlarm Przemysław Stolarz. Wszelkie prawa zastrzeżone.</p>
+                <div class="footer-links">
+                    <a href="{% url 'polityka_prywatnosci' %}">Polityka prywatności</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'website/js/main.js' %}"></script>
+</body>
+</html>
+
