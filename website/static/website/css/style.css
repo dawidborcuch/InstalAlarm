@@ -453,6 +453,11 @@ body {
     gap: 0.75rem;
 }
 
+.footer-logo .logo-img {
+    height: 189px;
+    max-width: 594px;
+}
+
 .footer-contact h3 {
     font-size: 1.25rem;
     margin-bottom: 1.5rem;

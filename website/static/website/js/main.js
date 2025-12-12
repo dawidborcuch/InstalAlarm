@@ -125,3 +125,64 @@ if (contactForm) {
     });
 }
 
+// ============================================
+// LIGHTBOX FOR GALLERY IMAGES
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('lightboxImage');
+    const caption = document.querySelector('.lightbox-caption');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const galleryImages = document.querySelectorAll('.gallery-image');
+    
+    // Check if modal exists (only on realizacje page)
+    if (!modal || !modalImg) {
+        return; // Exit if modal doesn't exist
+    }
+    
+    // Open modal when clicking on gallery image
+    if (galleryImages.length > 0) {
+        galleryImages.forEach(function(img) {
+            img.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const fullImageUrl = this.getAttribute('data-full-image') || this.src;
+                modal.classList.add('active');
+                modalImg.src = fullImageUrl;
+                if (caption) {
+                    caption.textContent = this.getAttribute('alt') || '';
+                }
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+    }
+    
+    // Close modal
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+    }
+    
+    // Close modal when clicking outside the image
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal || e.target === modalImg) {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        });
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    });
+});
+
