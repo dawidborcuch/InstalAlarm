@@ -841,12 +841,42 @@
                     
                     // Wyślij formularz przez AJAX
                     const formData = new FormData(contactForm);
+                    
+                    // Pobierz token CSRF z cookies lub z ukrytego pola formularza
+                    function getCookie(name) {
+                        let cookieValue = null;
+                        if (document.cookie && document.cookie !== '') {
+                            const cookies = document.cookie.split(';');
+                            for (let i = 0; i < cookies.length; i++) {
+                                const cookie = cookies[i].trim();
+                                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+                    
+                    // Pobierz token CSRF - najpierw z ukrytego pola, potem z cookies
+                    let csrftoken = contactForm.querySelector('[name=csrfmiddlewaretoken]')?.value;
+                    if (!csrftoken) {
+                        csrftoken = getCookie('csrftoken');
+                    }
+                    
+                    // Upewnij się, że token jest w FormData
+                    if (csrftoken && !formData.has('csrfmiddlewaretoken')) {
+                        formData.append('csrfmiddlewaretoken', csrftoken);
+                    }
+                    
                     fetch(contactForm.action, {
                         method: 'POST',
                         body: formData,
                         headers: {
-                            'X-Requested-With': 'XMLHttpRequest'
-                        }
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRFToken': csrftoken || ''
+                        },
+                        credentials: 'same-origin'
                     })
                     .then(response => {
                         if (response.ok) {
