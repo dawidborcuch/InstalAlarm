@@ -86,7 +86,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
 EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com')
 EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
+
+# Dla wartości boolean, sprawdź najpierw zmienne środowiskowe systemowe, potem .env
+import os
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=os.getenv('EMAIL_USE_TLS', 'True').lower() == 'true', cast=bool)
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=os.getenv('EMAIL_USE_SSL', 'False').lower() == 'true', cast=bool)
+
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default=f'InstalAlarm <{EMAIL_HOST_USER}>' if EMAIL_HOST_USER else 'InstalAlarm')
