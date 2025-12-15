@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://instalalarm.pl/sitemap.xml
+
+# Disallow admin panel
+Disallow: /admin/
+
+# Disallow static files (optional - remove if you want them indexed)
+# Disallow: /static/
+# Disallow: /media/
+

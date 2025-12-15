@@ -114,6 +114,20 @@ body {
     font-weight: 400;
 }
 
+.logo-phone {
+    font-size: 0.7rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    display: block;
+    margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+    .logo-phone {
+        font-size: 0.65rem;
+    }
+}
+
 /* Menu nawigacyjne */
 .nav-menu {
     display: flex;
@@ -957,5 +971,89 @@ body {
 
 .about-text p:last-child {
     margin-bottom: 0;
+}
+
+/* ============================================
+   SEKCJA OBSŁUGIWANE MIEJSCOWOŚCI
+   ============================================ */
+.locations-section {
+    padding: 6rem 0;
+    background-color: var(--bg-dark);
+}
+
+.locations-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.locations-intro {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.location-group h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.location-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.location-list li {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 2;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.location-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.locations-note {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--bg-darker);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .locations-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .locations-intro {
+        font-size: 1rem;
+    }
+    
+    .location-group h3 {
+        font-size: 1.25rem;
+    }
 }
 

@@ -10,33 +10,55 @@ Nowoczesna, responsywna strona internetowa dla firmy InstalAlarm Przemysław Sto
   - Pomarańczowy (#F68C22) - sekcja partnerstwa Eltrox
 - **Czcionka:** Poppins (Google Fonts)
 
-## 🚀 Instalacja i Uruchomienie
+## 🚀 Instalacja i Uruchomienie (Development)
 
 1. **Zainstaluj zależności:**
 ```bash
 pip install -r requirements.txt
 ```
 
-2. **Wykonaj migracje bazy danych:**
+2. **Skonfiguruj zmienne środowiskowe (opcjonalne):**
+```bash
+cp .env.example .env
+# Edytuj .env i ustaw wartości dla development
+```
+
+3. **Wykonaj migracje bazy danych:**
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-3. **Utwórz superużytkownika (aby móc logować się do panelu admin):**
+4. **Utwórz superużytkownika (aby móc logować się do panelu admin):**
 ```bash
 python manage.py createsuperuser
 ```
 
-4. **Uruchom serwer deweloperski:**
+5. **Uruchom serwer deweloperski:**
 ```bash
 python manage.py runserver
 ```
 
-5. **Otwórz w przeglądarce:**
+6. **Otwórz w przeglądarce:**
    - Strona główna: http://127.0.0.1:8000/
    - Panel admin: http://127.0.0.1:8000/admin/
    - Realizacje: http://127.0.0.1:8000/realizacje/
+
+## 🚀 Wdrożenie na Produkcję
+
+**Szczegółowa instrukcja wdrożenia znajduje się w pliku [WDROZENIE.md](WDROZENIE.md)**
+
+### Szybki start:
+1. Skonfiguruj zmienne środowiskowe na serwerze (`.env` lub panel hostingu)
+2. Ustaw `DEBUG=False` i `SECRET_KEY` w produkcji
+3. Uruchom migracje i `collectstatic`
+4. Skonfiguruj Gunicorn + Nginx (szczegóły w WDROZENIE.md)
+
+### Ważne:
+- **Commity w środowisku deweloperskim NIE wpływają na produkcję**
+- Produkcja używa `instalalarm.settings.production`
+- Development używa `instalalarm.settings.development`
+- Wszystkie wrażliwe dane są w zmiennych środowiskowych (`.env`)
 
 ## ✨ Funkcjonalności
 
@@ -135,4 +157,19 @@ Wszystkie teksty mają wysoki kontrast dla lepszej czytelności:
 - Dane kontaktowe w footerze należy zaktualizować na rzeczywiste
 - Placeholder dla logo można zastąpić prawdziwym obrazem
 - Obraz tła w sekcji Hero można zastąpić prawdziwym zdjęciem/wideo
-- Przed wdrożeniem na produkcję zmień `SECRET_KEY` w `settings.py` i ustaw `DEBUG = False`
+
+## 🔐 Bezpieczeństwo
+
+- **NIGDY nie commituj pliku `.env`** - jest w `.gitignore`
+- Wszystkie wrażliwe dane (SECRET_KEY, hasła) są w zmiennych środowiskowych
+- W produkcji `DEBUG=False` jest wymuszane przez `settings.production`
+- Struktura settings oddziela development od production
+
+## 📁 Struktura Settings
+
+Projekt używa struktury settings z oddzielnymi plikami:
+- `instalalarm/settings/base.py` - wspólne ustawienia
+- `instalalarm/settings/development.py` - ustawienia dla development
+- `instalalarm/settings/production.py` - ustawienia dla produkcji
+
+Dzięki temu commity w środowisku deweloperskim nie wpływają na produkcję.
