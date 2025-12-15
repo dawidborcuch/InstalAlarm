@@ -131,7 +131,38 @@ Skopiuj wygenerowany klucz i wklej jako `SECRET_KEY` w pliku `.env`.
 
 ## 🗄️ Krok 5: Konfiguracja bazy danych PostgreSQL
 
-### 5.1. Przejdź do PostgreSQL
+### 5.1. Sprawdź czy PostgreSQL jest zainstalowany
+
+```bash
+sudo systemctl status postgresql
+```
+
+Jeśli PostgreSQL nie jest zainstalowany, zainstaluj go:
+```bash
+sudo apt install -y postgresql postgresql-contrib
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+```
+
+### 5.2. Sprawdź użytkownika PostgreSQL
+
+W Ubuntu 22.04 PostgreSQL może używać innego użytkownika. Sprawdź:
+```bash
+sudo -u postgres psql
+```
+
+Jeśli to nie działa, spróbuj:
+```bash
+sudo su - postgres
+psql
+```
+
+Lub sprawdź jaki użytkownik jest używany:
+```bash
+ps aux | grep postgres
+```
+
+### 5.3. Przejdź do PostgreSQL
 
 ```bash
 sudo -u postgres psql
