@@ -444,6 +444,7 @@
                         <li><a href="{% url 'realizacje' %}">Realizacje</a></li>
                         <li><a href="{% url 'index' %}#o-nas">O nas</a></li>
                         <li><a href="{% url 'index' %}#kontakt">Kontakt</a></li>
+                        <li class="nav-menu-cta"><a href="#" class="btn-cta-header" id="openContactModalMobile">Zapytaj o wycenę</a></li>
                     </ul>
                     
                     <a href="#" class="btn-cta-header" id="openContactModal">Zapytaj o wycenę</a>
@@ -644,7 +645,7 @@
                         <span>Jasiorówka 249, 07-130 Jasiorówka</span>
                     </div>
                     <div class="contact-item" style="margin-top: 1rem;">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d255.0336847143715!2d21.680510483017677!3d52.54604424562248!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471f1d9762266827%3A0x58156e4bfe5f4c25!2sJasior%C3%B3wka%20249%2C%2007-130%20Jasior%C3%B3wka!5e0!3m2!1spl!2spl!4v1765809938574!5m2!1spl!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d255.0336847143715!2d21.680510483017677!3d52.54604424562248!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471f1d9762266827%3A0x58156e4bfe5f4c25!2sJasior%C3%B3wka%20249%2C%2007-130%20Jasior%C3%B3wka!5e0!3m2!1spl!2spl!4v1765809938574!5m2!1spl!2spl" width="100%" height="200" style="border:0; border-radius: 5px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -773,6 +774,7 @@
             const contactModal = document.getElementById('contactModal');
             const openModalBtn = document.getElementById('openContactModal');
             const openModalHeroBtn = document.getElementById('openContactModalHero');
+            const openModalMobileBtn = document.getElementById('openContactModalMobile');
             const closeModalBtn = document.querySelector('.contact-modal-close');
             const contactForm = document.getElementById('contactForm');
             
@@ -801,6 +803,26 @@
                 openModalHeroBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     openModal();
+                });
+            }
+            
+            if (openModalMobileBtn) {
+                openModalMobileBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openModal();
+                    // Zamknij menu mobilne po kliknięciu
+                    const navMenu = document.getElementById('navMenu');
+                    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        if (mobileMenuToggle) {
+                            mobileMenuToggle.classList.remove('active');
+                            const spans = mobileMenuToggle.querySelectorAll('span');
+                            spans[0].style.transform = 'none';
+                            spans[1].style.opacity = '1';
+                            spans[2].style.transform = 'none';
+                        }
+                    }
                 });
             }
             

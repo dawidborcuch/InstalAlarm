@@ -136,6 +136,11 @@ body {
     align-items: center;
 }
 
+/* Ukryj przycisk CTA w menu na desktop */
+.nav-menu-cta {
+    display: none;
+}
+
 .nav-menu a {
     color: var(--text-primary);
     text-decoration: none;
@@ -605,6 +610,21 @@ body {
     
     .btn-cta-header {
         display: none;
+    }
+    
+    /* Przycisk CTA w menu mobilnym */
+    .nav-menu-cta {
+        display: block;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-menu-cta .btn-cta-header {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin: 0;
     }
     
     .hero {
