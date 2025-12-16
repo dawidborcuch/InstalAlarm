@@ -136,6 +136,11 @@ body {
     align-items: center;
 }
 
+/* Ukryj przycisk CTA w menu na desktop */
+.nav-menu-cta {
+    display: none;
+}
+
 .nav-menu a {
     color: var(--text-primary);
     text-decoration: none;
@@ -607,6 +612,21 @@ body {
         display: none;
     }
     
+    /* Przycisk CTA w menu mobilnym */
+    .nav-menu-cta {
+        display: block;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-menu-cta .btn-cta-header {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin: 0;
+    }
+    
     .hero {
         min-height: 500px;
         padding: 0 1rem;
@@ -750,12 +770,10 @@ body {
     display: flex;
     transition: transform 0.5s ease;
     gap: 2rem;
-    will-change: transform;
 }
 
 .carousel-slide {
-    flex: 0 0 auto;
-    width: calc(33.333% - 1.333rem);
+    flex: 0 0 calc(33.333% - 1.333rem);
     min-width: 0;
 }
 
@@ -828,8 +846,7 @@ body {
 
 @media (max-width: 968px) {
     .carousel-slide {
-        flex: 0 0 auto;
-        width: calc(50% - 1rem);
+        flex: 0 0 calc(50% - 1rem);
     }
     
     .carousel-btn {
@@ -849,8 +866,7 @@ body {
 
 @media (max-width: 768px) {
     .carousel-slide {
-        flex: 0 0 auto;
-        width: 100%;
+        flex: 0 0 100%;
     }
     
     .carousel-btn {

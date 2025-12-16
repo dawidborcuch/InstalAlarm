@@ -96,9 +96,12 @@
         }
     }
     </script>
-    <link rel="icon" type="image/png" href="{% static 'website/images/tarcza.png' %}">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'website/images/tarcza.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'website/images/tarcza.png' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'website/images/tarcza.png' %}">
-    <link rel="apple-touch-icon" href="{% static 'website/images/tarcza.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'website/images/tarcza.png' %}">
+    <link rel="manifest" href="{% static 'website/manifest.json' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -444,6 +447,7 @@
                         <li><a href="{% url 'realizacje' %}">Realizacje</a></li>
                         <li><a href="{% url 'index' %}#o-nas">O nas</a></li>
                         <li><a href="{% url 'index' %}#kontakt">Kontakt</a></li>
+                        <li class="nav-menu-cta"><a href="#" class="btn-cta-header" id="openContactModalMobile">Zapytaj o wycenę</a></li>
                     </ul>
                     
                     <a href="#" class="btn-cta-header" id="openContactModal">Zapytaj o wycenę</a>
@@ -773,6 +777,7 @@
             const contactModal = document.getElementById('contactModal');
             const openModalBtn = document.getElementById('openContactModal');
             const openModalHeroBtn = document.getElementById('openContactModalHero');
+            const openModalMobileBtn = document.getElementById('openContactModalMobile');
             const closeModalBtn = document.querySelector('.contact-modal-close');
             const contactForm = document.getElementById('contactForm');
             
@@ -801,6 +806,26 @@
                 openModalHeroBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     openModal();
+                });
+            }
+            
+            if (openModalMobileBtn) {
+                openModalMobileBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openModal();
+                    // Zamknij menu mobilne po kliknięciu
+                    const navMenu = document.getElementById('navMenu');
+                    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        if (mobileMenuToggle) {
+                            mobileMenuToggle.classList.remove('active');
+                            const spans = mobileMenuToggle.querySelectorAll('span');
+                            spans[0].style.transform = 'none';
+                            spans[1].style.opacity = '1';
+                            spans[2].style.transform = 'none';
+                        }
+                    }
                 });
             }
             
@@ -1091,21 +1116,9 @@
                 currentIndex = Math.min(currentIndex, maxIndex);
                 currentIndex = Math.max(0, currentIndex);
                 
-                // Oblicz przesunięcie na podstawie rzeczywistej szerokości slajdu
-                if (slides.length > 0) {
-                    const firstSlide = slides[0];
-                    const slideRect = firstSlide.getBoundingClientRect();
-                    const trackStyles = window.getComputedStyle(track);
-                    const gap = parseFloat(trackStyles.gap) || 32; // Pobierz gap z CSS lub użyj domyślnej wartości
-                    const slideWidth = slideRect.width;
-                    const translateX = -(currentIndex * (slideWidth + gap));
-                    track.style.transform = `translateX(${translateX}px)`;
-                } else {
-                    // Fallback do procentów, jeśli nie można obliczyć szerokości
-                    const slideWidth = 100 / visibleSlides;
-                    const translateX = -(currentIndex * slideWidth);
-                    track.style.transform = `translateX(${translateX}%)`;
-                }
+                const slideWidth = 100 / visibleSlides;
+                const translateX = -(currentIndex * slideWidth);
+                track.style.transform = `translateX(${translateX}%)`;
                 
                 // Aktualizuj przyciski
                 prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';

@@ -1,0 +1,22 @@
+{
+    "name": "InstalAlarm - Instalacje alarmowe",
+    "short_name": "InstalAlarm",
+    "description": "Profesjonalne instalacje alarmowe, monitoring CCTV i automatyka budynkowa",
+    "icons": [
+        {
+            "src": "/static/website/images/tarcza.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/website/images/tarcza.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#c40000",
+    "background_color": "#1a1a1a",
+    "display": "standalone",
+    "start_url": "/"
+}
+
