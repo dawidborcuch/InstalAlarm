@@ -1091,9 +1091,21 @@
                 currentIndex = Math.min(currentIndex, maxIndex);
                 currentIndex = Math.max(0, currentIndex);
                 
-                const slideWidth = 100 / visibleSlides;
-                const translateX = -(currentIndex * slideWidth);
-                track.style.transform = `translateX(${translateX}%)`;
+                // Oblicz przesunięcie na podstawie rzeczywistej szerokości slajdu
+                if (slides.length > 0) {
+                    const firstSlide = slides[0];
+                    const slideRect = firstSlide.getBoundingClientRect();
+                    const trackStyles = window.getComputedStyle(track);
+                    const gap = parseFloat(trackStyles.gap) || 32; // Pobierz gap z CSS lub użyj domyślnej wartości
+                    const slideWidth = slideRect.width;
+                    const translateX = -(currentIndex * (slideWidth + gap));
+                    track.style.transform = `translateX(${translateX}px)`;
+                } else {
+                    // Fallback do procentów, jeśli nie można obliczyć szerokości
+                    const slideWidth = 100 / visibleSlides;
+                    const translateX = -(currentIndex * slideWidth);
+                    track.style.transform = `translateX(${translateX}%)`;
+                }
                 
                 // Aktualizuj przyciski
                 prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
