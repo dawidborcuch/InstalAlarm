@@ -10,7 +10,7 @@ from .models import ZdjecieRealizacji, ContactMessage
 
 def index(request):
     """Strona główna."""
-    zdjecia = ZdjecieRealizacji.objects.filter(aktywna=True)[:3]
+    zdjecia = ZdjecieRealizacji.objects.filter(aktywna=True).order_by('-id')
     
     if request.method == 'POST':
         # Rate limiting - max 3 wiadomości na 15 minut z tego samego IP

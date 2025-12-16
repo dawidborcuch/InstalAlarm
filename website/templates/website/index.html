@@ -1062,12 +1062,18 @@
             
             // Ustaw liczbę widocznych slajdów na podstawie szerokości ekranu
             function updateVisibleSlides() {
+                const oldVisibleSlides = visibleSlides;
                 if (window.innerWidth <= 768) {
                     visibleSlides = 1;
                 } else if (window.innerWidth <= 968) {
                     visibleSlides = 2;
                 } else {
                     visibleSlides = 3;
+                }
+                
+                // Jeśli zmieniła się liczba widocznych slajdów, zresetuj currentIndex
+                if (oldVisibleSlides !== visibleSlides) {
+                    currentIndex = 0;
                 }
                 updateCarousel();
             }
@@ -1097,14 +1103,24 @@
             function createDots() {
                 if (!dotsContainer) return;
                 dotsContainer.innerHTML = '';
+                
+                // Jeśli wszystkie slajdy mieszczą się na ekranie, nie pokazuj kropek
+                if (totalSlides <= visibleSlides) {
+                    return;
+                }
+                
                 const totalPages = Math.ceil(totalSlides / visibleSlides);
+                
                 for (let i = 0; i < totalPages; i++) {
                     const dot = document.createElement('button');
                     dot.classList.add('carousel-dot');
                     if (i === 0) dot.classList.add('active');
+                    dot.setAttribute('aria-label', `Przejdź do strony ${i + 1}`);
                     dot.addEventListener('click', () => {
+                        stopAutoPlay();
                         currentIndex = i * visibleSlides;
                         updateCarousel();
+                        startAutoPlay();
                     });
                     dotsContainer.appendChild(dot);
                 }
@@ -1112,13 +1128,39 @@
             
             // Aktualizuj karuzelę
             function updateCarousel() {
+                // Jeśli wszystkie slajdy mieszczą się na ekranie, nie przesuwaj
+                if (totalSlides <= visibleSlides) {
+                    track.style.transform = 'translateX(0)';
+                    prevBtn.style.opacity = '0.5';
+                    prevBtn.style.pointerEvents = 'none';
+                    nextBtn.style.opacity = '0.5';
+                    nextBtn.style.pointerEvents = 'none';
+                    return;
+                }
+                
                 const maxIndex = Math.max(0, totalSlides - visibleSlides);
                 currentIndex = Math.min(currentIndex, maxIndex);
                 currentIndex = Math.max(0, currentIndex);
                 
-                const slideWidth = 100 / visibleSlides;
-                const translateX = -(currentIndex * slideWidth);
-                track.style.transform = `translateX(${translateX}%)`;
+                // Oblicz przesunięcie - użyj rzeczywistej szerokości kontenera i slajdu
+                const container = track.parentElement;
+                if (container && slides.length > 0) {
+                    const containerWidth = container.offsetWidth;
+                    const trackStyles = window.getComputedStyle(track);
+                    const gapValue = trackStyles.gap;
+                    const gap = gapValue ? parseFloat(gapValue) : 32; // 2rem = 32px (zakładając 16px base)
+                    
+                    // Szerokość jednego slajdu (bez gap)
+                    const slideWidth = (containerWidth - (visibleSlides - 1) * gap) / visibleSlides;
+                    // Przesunięcie = szerokość slajdu + gap (bo gap jest między slajdami)
+                    const translateX = -(currentIndex * (slideWidth + gap));
+                    track.style.transform = `translateX(${translateX}px)`;
+                } else {
+                    // Fallback do procentów
+                    const slideWidthPercent = 100 / visibleSlides;
+                    const translateX = -(currentIndex * slideWidthPercent);
+                    track.style.transform = `translateX(${translateX}%)`;
+                }
                 
                 // Aktualizuj przyciski
                 prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
@@ -1200,16 +1242,28 @@
                 });
             }
             
-            // Inicjalizacja
-            updateVisibleSlides();
-            createDots();
-            startAutoPlay(); // Rozpocznij automatyczne przewijanie
-            
-            window.addEventListener('resize', () => {
+            // Inicjalizacja - użyj setTimeout, aby upewnić się, że elementy są wyrenderowane
+            setTimeout(() => {
                 updateVisibleSlides();
                 createDots();
-                stopAutoPlay();
-                startAutoPlay();
+                // Poczekaj jeszcze chwilę przed startem auto-play
+                setTimeout(() => {
+                    startAutoPlay();
+                }, 100);
+            }, 100);
+            
+            // Debounce dla resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updateVisibleSlides();
+                    createDots();
+                    stopAutoPlay();
+                    setTimeout(() => {
+                        startAutoPlay();
+                    }, 100);
+                }, 250);
             });
         });
     </script>
