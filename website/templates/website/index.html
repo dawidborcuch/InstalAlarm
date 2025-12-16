@@ -447,7 +447,6 @@
                         <li><a href="{% url 'realizacje' %}">Realizacje</a></li>
                         <li><a href="{% url 'index' %}#o-nas">O nas</a></li>
                         <li><a href="{% url 'index' %}#kontakt">Kontakt</a></li>
-                        <li class="nav-menu-cta"><a href="#" class="btn-cta-header" id="openContactModalMobile">Zapytaj o wycenę</a></li>
                     </ul>
                     
                     <a href="#" class="btn-cta-header" id="openContactModal">Zapytaj o wycenę</a>
@@ -777,7 +776,6 @@
             const contactModal = document.getElementById('contactModal');
             const openModalBtn = document.getElementById('openContactModal');
             const openModalHeroBtn = document.getElementById('openContactModalHero');
-            const openModalMobileBtn = document.getElementById('openContactModalMobile');
             const closeModalBtn = document.querySelector('.contact-modal-close');
             const contactForm = document.getElementById('contactForm');
             
@@ -806,26 +804,6 @@
                 openModalHeroBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     openModal();
-                });
-            }
-            
-            if (openModalMobileBtn) {
-                openModalMobileBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openModal();
-                    // Zamknij menu mobilne po kliknięciu
-                    const navMenu = document.getElementById('navMenu');
-                    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-                    if (navMenu && navMenu.classList.contains('active')) {
-                        navMenu.classList.remove('active');
-                        if (mobileMenuToggle) {
-                            mobileMenuToggle.classList.remove('active');
-                            const spans = mobileMenuToggle.querySelectorAll('span');
-                            spans[0].style.transform = 'none';
-                            spans[1].style.opacity = '1';
-                            spans[2].style.transform = 'none';
-                        }
-                    }
                 });
             }
             
